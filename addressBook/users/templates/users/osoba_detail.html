@@ -1,0 +1,17 @@
+{% extends "users/base.html" %}
+{% block content %}
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'user-update' object.id %}">Update</a>
+          </div>
+
+      </div>
+      <h2 class="article-title">{{ object.imie }}</h2>
+      <p class="article-title">{{ object.nazwisko }}</p>
+
+
+    </div>
+  </article>
+{% endblock content %}

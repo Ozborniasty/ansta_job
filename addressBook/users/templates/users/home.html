@@ -1,0 +1,49 @@
+{% extends "users/base.html" %}
+{% block content %}
+
+
+<article class="media content-section">
+          <div class="media-body">
+
+              <form method="GET" action="">
+                    <input type='text' name="q" placeholder="Search user"/>
+                    <input type="submit" value="Search" />
+                </form>
+
+          </div>
+
+
+        </article>
+
+    {% for post in posts %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+
+                <h2><a class="article-title" href="#">{{ post.imie }} {{ post.nazwisko }}</a></h2>
+
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'email' post.id %}">Email</a>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'phone' post.id %}">Phone number</a>
+
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'user-update' post.id %}">Edit</a>
+                {% if not post.phones and not post.emails  %}
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'user-delete' post.id %}">Delete</a>
+                {%endif%}
+
+            </div>
+                 {% for email in post.emails %}
+                    <p class="article-content">{{ email }}</p>
+                {% endfor %}
+
+                {% for phone in post.phones %}
+                    <p class="article-content">{{ phone }}</p>
+                {% endfor %}
+
+          </div>
+
+
+        </article>
+    {% endfor %}
+
+
+{% endblock content %}
